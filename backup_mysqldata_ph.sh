@@ -4,10 +4,10 @@
 #2013-9
 
 #Setting
-DBName=ph
-DBUser=root
-DBPasswd=zaq12wsxz
-BackupPath=/data/mysqldata_ph
+DBName=
+DBUser=
+DBPasswd=
+BackupPath=
 #Setting END
 
 #progress
