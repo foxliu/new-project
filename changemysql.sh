@@ -1,10 +1,15 @@
 #!/bin/bash
-Logfile=/root/tools/change.log
+#Setting
+Logfile=
+Databses=" "
+Backfile_dir=
+Mysqldir=
 
+Realbackdir=$(sed 's/\/$//' $Backfile_dir)
 Backupdata () {
-  for i in mysql cfp_swap crm2 crm4 test
+  for i in $Databases
   do
-    mysqldump -S /tmp/mysqld.sock --opt --database $i > /data/sql/$i && mysql -S /tmp/mysql.sock < /data/sql/$i
+    mysqldump -S /tmp/mysqld.sock --opt --database $i > "$Realbackdir"/"$i" && mysql -S /tmp/mysql.sock < "$Realbackdir"/"$i"
   done
 }
 
@@ -14,7 +19,7 @@ Stopmysql () {
 }
 
 Changefile () {
-  rm -f /usr/local/mysql && ln -s /usr/local/mysql-5.1.30-linux-x86_64-glibc23 /usr/local/mysql
+  [ -L /usr/local/mysql ] || rm -f /usr/local/mysql && ln -s $Mysqldir /usr/local/mysql
 }
 
 echo -e "==============Change Start===============" >> $Logfile 
