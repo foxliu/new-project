@@ -18,11 +18,19 @@ backupdir=$(echo "$BackupPath" | sed -e 's/\/$//')/$y/$md
 
 getbinlog () {
   echo -e "\n$(date +%Y%m%d-%H:%M) \t backup data ph \n ============================================" >> /$backupdir/binlog_from.log
-  /usr/local/mysql/bin/mysql -u $DBUser -p$DBPasswd -S /tmp/mysql.sock -e "stop slave;" && /usr/local/mysql/bin/mysql -u$DBUser -p$DBPasswd -S /tmp/mysql.sock -e "show slave status\G" | grep -E '(Relay_Master_Log_File|Exec_Master_Log_Pos)' >> /$backupdir/binlog_from.log
+  if [ -z $DBPasswd ]; then
+      /usr/local/mysql/bin/mysql -u $DBUser -S /tmp/mysql.sock -e "stop slave;" && /usr/local/mysql/bin/mysql -u$DBUser -S /tmp/mysql.sock -e "show slave status\G" | grep -E '(Relay_Master_Log_File|Exec_Master_Log_Pos)' >> /$backupdir/binlog_from.log
+  else
+     /usr/local/mysql/bin/mysql -u $DBUser -p$DBPasswd -S /tmp/mysql.sock -e "stop slave;" && /usr/local/mysql/bin/mysql -u$DBUser -p$DBPasswd -S /tmp/mysql.sock -e "show slave status\G" | grep -E '(Relay_Master_Log_File|Exec_Master_Log_Pos)' >> /$backupdir/binlog_from.log
+  fi
 }
 
 backup_data () {
-  /usr/local/mysql/bin/mysqldump -u $DBUser -p$DBPasswd -S /tmp/mysql.sock $DBName > $backupdir/"$DBName".sql && /usr/local/mysql/bin/mysql -u $DBUser -p$DBPasswd -S /tmp/mysql.sock -e "slave start;"
+  if [ -z $DBPasswd ]; then
+    /usr/local/mysql/bin/mysqldump -u $DBUser -S /tmp/mysql.sock $DBName > $backupdir/"$DBName".sql && /usr/local/mysql/bin/mysql -u $DBUser -S /tmp/mysql.sock -e "slave start;"
+  else
+    /usr/local/mysql/bin/mysqldump -u $DBUser -p$DBPasswd -S /tmp/mysql.sock $DBName > $backupdir/"$DBName".sql && /usr/local/mysql/bin/mysql -u $DBUser -p$DBPasswd -S /tmp/mysql.sock -e "slave start;"
+  fi
 }
 
 if [ ! -d $backupdir ]; then
