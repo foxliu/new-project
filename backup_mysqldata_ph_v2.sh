@@ -41,6 +41,14 @@ backup_data () {
   esac
 }
 
+dump_innodb_table () {
+  tables=$(mysql -u $DBName -p$DBPasswd -h $DBHost -e "select table_name, engine from information_schema.tables where table_schema='ph' and engine='InnoDB'\G" | grep table_name | awk '{print $2}')
+  for table in $tables
+  do
+    /usr/local/mysql/bin/mysqldump -u $DBUser -p$DBPasswd -h $DBHost ph $table > $backupdir/${table}.sql
+  done
+}
+
 if [ ! -d $backupdir ]; then
     mkdir -p $backupdir
 fi
@@ -51,6 +59,8 @@ for DBName in $DBNames
 do
   backup_data
 done
+
+dump_innodb_table
 
 /usr/local/mysql/bin/mysql -u $DBUser -p$DBPasswd -h $DBHost -e "slave start;"
 echo -e "\n===========================================\n$(date +%Y%m%d-%H:%M) \tBackup Complete" >> /$backupdir/binlog_from.log
