@@ -4,11 +4,11 @@
 #2013-12
 
 #Setting
-DBNames="ph ph_click dzdata"
-DBUser=root
-DBHost=27.112.3.67
-DBPasswd=zaq12wsxz
-BackupPath=/data/mysqldata_ph
+DBNames=
+DBUser=
+DBHost=
+DBPasswd=
+BackupPath=
 #Setting END
 
 #progress
