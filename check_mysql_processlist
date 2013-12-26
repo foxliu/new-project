@@ -1,4 +1,9 @@
 #!/bin/bash
+# Author: Merlin Liu
+# Date: 2013-12-26
+# check mysql processlist's counts
+# Useage ./check_mysql_processlist -u <user> -p <password>
+
 STATE_OK=0
 STATE_WARNING=1
 STATE_CRITICAL=2
