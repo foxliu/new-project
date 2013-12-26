@@ -1,0 +1,46 @@
+#!/bin/bash
+STATE_OK=0
+STATE_WARNING=1
+STATE_CRITICAL=2
+STATE_UNKNOWN=3 
+
+
+if [ $# -lt 1 ]; then
+  echo "there is no option!"
+else
+  while getopts "u:p:w:c:" arg
+  do
+    case $arg in
+         u)
+	   user=$OPTARG
+	   ;;
+	 p)
+	   passwd=$OPTARG
+	   ;;
+	 w)
+	   warn=$OPTARG
+	   ;;
+	 c)
+	   crit=$OPTARG
+	   ;;
+	 *)
+	   echo "use -u <user> -p <password>"
+	   ;;
+    esac
+  done
+fi
+
+count=$(mysql -u$user -p$passwd -e "show processlist;" | grep -e ^[0-9] | wc -l)
+if [ "$count" -lt "$warn" ]; then
+  echo "The mysql service is OK!"
+  exit $STATE_OK
+elif [ "$count" -ge "$warn" -a "$count" -lt "$crit" ]; then
+  echo "The mysql service is warn!"
+  exit $STATE_WARNING
+elif [ "$count" -ge "$crit" ]; then
+  echo "The mysql service is crit!"
+  exit $STATE_CRITICAL
+else
+  echo "unknow"
+  exit $STATE_UNKNOWN
+fi
