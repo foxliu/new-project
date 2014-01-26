@@ -1,8 +1,10 @@
 #!/bin/bash
 export LANG=en_US.UTF-8
+
+# Setting
 FILE=''
-THRESHOLD=100
-Load_thre=10
+THRESHOLD=
+Load_thre=
 
 # check the load is warn or not, if the load < threshold , exit the progress
 load_average=$(uptime | awk '{print $(NF-2)}' | sed -e 's/,//g')
