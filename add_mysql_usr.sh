@@ -1,7 +1,7 @@
 #!/bin/bash
-IP=219.239.94.116
-DBUser=root
-DBPasswd=zaq12wsxz
+IP=
+DBUser=
+DBPasswd=
 
 user[0]="select,update,insert,delete;ph|ph_click;photo;219.239.94.107|27.112.3.79"
 user[1]="select,update,insert;ph;photo;219.239.94.110|219.239.94.118|219.239.94.121|219.239.94.126|27.112.3.79|27.112.3.69|192.155.87.118|106.187.93.177"
