@@ -47,6 +47,7 @@ int main(void)
                       break;
             case 'q': return 0;
             default: printf("Illegal code\n");
+                      break;
         }
         printf("\n");
     }
@@ -74,7 +75,7 @@ int find_part(int number)
  *         prematurely if the part already exists or the  *
  *         database is full.                              *
  **********************************************************/
-voide insert(void)
+void insert(void)
 {
     int part_number;
     

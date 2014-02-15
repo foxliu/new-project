@@ -23,7 +23,7 @@ fi
 
 # Check the VIP is or not alive
 $PING $VIP -c 5 -w 5 >/dev/null 2>&1  && if [ "$?" == 0 ]; then
-echo -e "Error!!!\nThe ip $VIP is aliving on $Slave_master\nFor remove it use ssh $Slave_master -f \"ip addr del 219.239.94.117/24 dev eth0\" \nAnd retry $0\n"
+echo -e "Error!!!\nThe ip $VIP is aliving on $Slave_master\nFor remove it use ssh $Slave_master -f \"ip addr del ${VIP}/24 dev eth0\" \nAnd retry $0\n"
 exit 0
 fi
 
