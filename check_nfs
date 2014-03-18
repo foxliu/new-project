@@ -1,0 +1,16 @@
+#!/bin/bash
+tmp_file=/tmp/check_nfs_file
+check_nfs () {
+  for i in $@
+  do
+    : > $i/check_nfs_temp_file &
+  done
+  sleep 2
+  ps aux | grep check_nfs_temp_file > /tmp/check_nfs_file
+  pkill check_nfs_temp_file
+  cat $tmp_file | while read line
+  do
+    error_disk=$(echo $line | awk '{for (i=1;i<=NF;i++) if ($i~/check_nfs_temp_file/) print $i}')
+    echo ${error_disk%/*}
+  done
+  }
