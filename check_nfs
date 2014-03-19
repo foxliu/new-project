@@ -20,9 +20,9 @@ do
 done
 
 if [ -s /tmp/check_nfs_log ]; then
-    exit STATE_CRITICAL
+    exit $STATE_CRITICAL
     cat /tmp/check_nfs_log
     : > /tmp/check_nfs_log
 else
-    exit STATE_OK
+    exit $STATE_OK
 fi
