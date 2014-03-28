@@ -11,13 +11,12 @@ STATE_UNKNOWN=3
 tmp_file=/tmp/check_nfs_file
 for i in $@
 do
-  echo "" > $(echo $i | sed 's/\/$//')/check_nfs_temp_file &
+  echo "1" > $(echo $i | sed 's/\/$//')/check_nfs_temp_file &
 done
 sleep 1
 ps -eo pid,cmd | grep check_nfs_temp_file | grep -v grep > /tmp/check_nfs_file
 cat $tmp_file | while read line
 do
-  kill -9 $(echo $line | awk '{print $1}')
   error_disk=$(echo $line | awk '{for (i=1;i<=NF;i++) if ($i~/check_nfs_temp_file/) print $i}')
   echo "${error_disk%/*} is error" >> /tmp/check_nfs_log
 done
@@ -26,6 +25,7 @@ if [ -s /tmp/check_nfs_log ]; then
     exit $STATE_CRITICAL
     cat /tmp/check_nfs_log
     : > /tmp/check_nfs_log
+    kill -9 0
 else
     exit $STATE_OK
 fi
