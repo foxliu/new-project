@@ -25,7 +25,7 @@ functions trap_exit
 # 通用执行函数
 exec_cmd() {
     # 此处为实际需要执行的命令
-    # rsync -av 219.239.94.111:/bank/bank10/img14/uploadimg/$file /bank/bank10/uploadimg/ &
+    # rsync -av 219.239.94.111:/bank/bank10/img14/uploadimg/$1 /bank/bank10/uploadimg/ &
     sleep 2
     if [ $? -ne 0 ]; then
         echo "command execute failure"
