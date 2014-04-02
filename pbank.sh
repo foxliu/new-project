@@ -3,7 +3,7 @@ MKFIFO='/usr/bin/mkfifo'
 TEMP_FIFO=/tmp/$$.fifo
 FAILURE_FLAG=/var/log/failure.log
 
-functions trap_exit
+function trap_exit
 {
     kill -9 0
 }
