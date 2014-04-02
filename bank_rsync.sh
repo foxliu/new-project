@@ -23,7 +23,7 @@ function trap_exit
 	kill -9 0
 }
 
-exec_commod() { 
+exec_commod() {
 	rsync -av 219.239.94.111:$1/$2 $1/
 	if [ $? -ne 0 ]; then
         echo "command execute failure"
