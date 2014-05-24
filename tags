@@ -1,0 +1,37 @@
+!_TAG_FILE_FORMAT	2	/extended format; --format=1 will not append ;" to lines/
+!_TAG_FILE_SORTED	1	/0=unsorted, 1=sorted, 2=foldcase/
+!_TAG_PROGRAM_AUTHOR	Darren Hiebert	/dhiebert@users.sourceforge.net/
+!_TAG_PROGRAM_NAME	Exuberant Ctags	//
+!_TAG_PROGRAM_URL	http://ctags.sourceforge.net	/official site/
+!_TAG_PROGRAM_VERSION	5.5	//
+Backupdata	changemysql.sh	/^Backupdata () {$/;"	f
+Changefile	changemysql.sh	/^Changefile () {$/;"	f
+Get_slave_behind_master_second	change_mysql_master.sh	/^Get_slave_behind_master_second () {$/;"	f
+MAX_PARTS	inventory.c	7;"	d	file:
+N	maxmin.c	5;"	d	file:
+N	reverse3.c	5;"	d	file:
+NAME_LEN	inventory.c	6;"	d	file:
+Stopmysql	changemysql.sh	/^Stopmysql () {$/;"	f
+backup_data	backup_mysqldata_ph.sh	/^backup_data () {$/;"	f
+backup_data	backup_mysqldata_ph_v2.sh	/^backup_data () {$/;"	f
+dump_data	backup_mysql.sh	/^dump_data () {$/;"	f
+dump_innodb_table	backup_mysqldata_ph_v2.sh	/^dump_innodb_table () {$/;"	f
+exec_cmd	pbank.sh	/^exec_cmd() {$/;"	f
+exec_cmd	prsync.sh	/^exec_cmd() {$/;"	f
+find_part	inventory.c	/^int find_part(int number)$/;"	f
+getbinlog	backup_mysqldata_ph.sh	/^getbinlog () {$/;"	f
+getbinlog	backup_mysqldata_ph_v2.sh	/^getbinlog () {$/;"	f
+insert	inventory.c	/^void insert(void)$/;"	f
+inventory	inventory.c	/^} inventory[MAX_PARTS];$/;"	v
+main	inventory.c	/^int main(void)$/;"	f
+main	maxmin.c	/^int main(void)$/;"	f
+main	reverse3.c	/^int main(void)$/;"	f
+max_min	maxmin.c	/^void max_min(int a[], int n, int *max, int *min)$/;"	f
+name	inventory.c	/^    char name[NAME_LEN];$/;"	m	struct:part	file:
+num_parts	inventory.c	/^int num_parts = 0;      \/* number of parts currently stored *\/$/;"	v
+number	inventory.c	/^    int number;$/;"	m	struct:part	file:
+on_hand	inventory.c	/^    int on_hand;$/;"	m	struct:part	file:
+part	inventory.c	/^struct part {$/;"	s	file:
+print	inventory.c	/^void print(void)$/;"	f
+search	inventory.c	/^void search(void)$/;"	f
+update	inventory.c	/^void update(void)$/;"	f
