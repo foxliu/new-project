@@ -42,7 +42,7 @@ int main()
   new_settings.c_cc[VTIME] = 0;
   new_settings.c_lflag &= ~ISIG;
   if(tcsetattr(fileno(input), TCSANOW, &initial_settings) != 0) {
-	fprintf(stderr, "could not set attributes\n");
+      fprintf(stderr, "could not set attributes\n");
   }
   
   do {
@@ -105,6 +105,6 @@ int getchoice(char *greet, char *choices[], FILE *in, FILE *out)
 
 int char_to_terminal(int char_to_write)
 {
-  if(output_stream) putc(char_to_write, output_stream);
-  return 0;
+    if(output_stream) putc(char_to_write, output_stream);
+    return 0;
 }
